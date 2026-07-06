@@ -16,6 +16,7 @@
         "hasnayeen/themes": "*",
         "joaopaulolndev/filament-edit-profile": "^1.0",
         "joshembling/image-optimizer": "^1.6",
+        "laravel/breeze": "^2.4",
         "laravel/framework": "^12.0",
         "laravel/tinker": "^2.10.1",
         "njxqlus/filament-progressbar": "*",

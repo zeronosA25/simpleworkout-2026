@@ -50,10 +50,17 @@ class AdminPanelProvider extends PanelProvider
             ->discoverWidgets(in: app_path('Filament/Admin/Widgets'), for: 'App\\Filament\\Admin\\Widgets')
             ->widgets([
                 \Awcodes\Overlook\Widgets\OverlookWidget::class,
+                \App\Filament\Admin\Widgets\DuplicateExerciseRequests::class,
             ])
             ->navigationGroups([
                 NavigationGroup::make()
+                    ->label('Konten'),
+                NavigationGroup::make()
+                    ->label('Moderasi'),
+                NavigationGroup::make()
                     ->label('Administration'),
+                NavigationGroup::make()
+                    ->label('Pengaturan'),
             ])
             ->userMenuItems([
                 'profile' => MenuItem::make()

@@ -1,26 +1,40 @@
+import defaultTheme from 'tailwindcss/defaultTheme';
+import forms from '@tailwindcss/forms';
+
 /** @type {import('tailwindcss').Config} */
-const colors = require("tailwindcss/colors");
-const defaultTheme = require("tailwindcss/defaultTheme");
-
-function withOpacityValue(variable) {
-    return ({ opacityValue }) => {
-        if (opacityValue === undefined) {
-            return `rgb(var(${variable}))`;
-        }
-        return `rgb(var(${variable}) / ${opacityValue})`;
-    };
-}
-
 export default {
     content: [
-        "./resources/**/*.blade.php",
-        "./app/Filament/**/*.php",
-        "./resources/views/filament/**/*.blade.php",
-        "./vendor/filament/**/*.blade.php",
+        './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
+        './storage/framework/views/*.php',
+        './resources/views/**/*.blade.php',
     ],
-    darkMode: "class",
-    plugins: [
-        require("@tailwindcss/forms"),
-        require("@tailwindcss/typography"),
-    ],
-}
+
+    theme: {
+        extend: {
+            fontFamily: {
+                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+            },
+            animation: {
+                'fade-in-up': 'fadeInUp 0.6s ease-out forwards',
+                'fade-in': 'fadeIn 0.8s ease-out forwards',
+                'float': 'float 3s ease-in-out infinite',
+            },
+            keyframes: {
+                fadeInUp: {
+                    '0%': { opacity: '0', transform: 'translateY(20px)' },
+                    '100%': { opacity: '1', transform: 'translateY(0)' },
+                },
+                fadeIn: {
+                    '0%': { opacity: '0' },
+                    '100%': { opacity: '1' },
+                },
+                float: {
+                    '0%, 100%': { transform: 'translateY(0px)' },
+                    '50%': { transform: 'translateY(-6px)' },
+                },
+            },
+        },
+    },
+
+    plugins: [forms],
+};

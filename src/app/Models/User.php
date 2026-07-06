@@ -7,6 +7,7 @@ use Filament\Models\Contracts\FilamentUser;
 use Filament\Models\Contracts\HasAvatar;
 use Filament\Panel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
@@ -26,6 +27,9 @@ class User extends Authenticatable implements FilamentUser, HasAvatar
         'name',
         'email',
         'password',
+        'remember_token',
+        'theme',
+        'theme_color',
     ];
 
     /**
@@ -65,5 +69,15 @@ class User extends Authenticatable implements FilamentUser, HasAvatar
     public function canAccessPanel(Panel $panel): bool
     {
         return true;
+    }
+
+    public function saranKritik(): HasMany
+    {
+        return $this->hasMany(SaranKritik::class);
+    }
+
+    public function jadwalPengguna(): HasMany
+    {
+        return $this->hasMany(JadwalPengguna::class);
     }
 }
