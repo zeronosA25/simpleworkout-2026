@@ -166,4 +166,91 @@ Data bisa diedit manual melalui Admin Panel setelahnya.
 | Cron 07:00 disebut | ✅ / ❌ | ✅ / ❌ |
 | FAQ & Saran digabung jadi 1 halaman | ✅ / ❌ | ✅ / ❌ |
 | Content seeders disebut di setup | ✅ / ❌ | ✅ / ❌ |
+
+
+---
+
+## 4. REST API — Public Data Endpoint
+
+**(Tambahan untuk dokumentasi API)**
+
+### BRD.md — Tambah di §5.2 Cakupan Fungsional:
+
+```
+- Mengakses data workout, otot, jadwal, dan FAQ melalui REST API (JSON).
+```
+
+### BRD.md — Tambah section baru di §6:
+
+```
+### 6.7 REST API
+
+Sistem menyediakan REST API endpoint untuk mengakses data publik:
+
+| Method | Endpoint | Output |
+|--------|----------|--------|
+| GET | /api/muscles | List semua otot aktif (id, name, slug, description) |
+| GET | /api/muscles/{slug} | Detail otot + daftar gerakan yang dipublikasi |
+| GET | /api/workouts/{slug} | Detail gerakan: title, type, description, guide, common_mistakes, video_url, video_id, image, muscle_group, equipments |
+| GET | /api/schedules | List template jadwal (id, nama_template, slug, deskripsi, jumlah_hari_per_minggu) |
+| GET | /api/schedules/{slug} | Detail jadwal: semua hari + daftar gerakan per hari |
+| GET | /api/faq | List FAQ publik (id, pertanyaan, jawaban, created_at) |
+| POST | /api/saran | Kirim saran/kritik (body: kategori, pesan). Rate limited IP. |
+
+Semua response mengembalikan format JSON:
+{
+  "success": true/false,
+  "data": { ... },
+  "message": "..." // untuk error
+}
+
+API bersifat public read-only — tidak memerlukan autentikasi untuk GET endpoints.
+POST /api/saran memiliki rate limiting (3 request/jam per IP).
+```
+
+### PRD.md — Tambah di §4 User Stories:
+
+```
+| US-?? | Developer | Sebagai developer, saya ingin mengakses data workout melalui REST API agar dapat mengintegrasikan dengan aplikasi lain. | Memperluas jangkauan platform. |
+```
+
+### PRD.md — Tambah di §5 Product Backlog:
+
+```
+| PB-?? | REST API | Menyediakan REST API endpoint untuk data publik (otot, gerakan, jadwal, FAQ) | Medium | Iterasi 5 |
+```
+
+### PRD.md — Tambah di §7 Spesifikasi Fitur:
+
+```
+### 7.15 REST API
+
+**Aturan Fungsional:**
+- API endpoint dapat diakses tanpa autentikasi (public read-only)
+- Data hanya mengembalikan konten yang dipublikasi (is_published = true, status = true)
+- POST /api/saran memiliki rate limiting yang sama dengan form web
+- Semua response dalam format JSON
+
+**Aturan Teknis:**
+- Controllers: app/Http/Controllers/Api/*
+- Routes: routes/api.php
+- Rate limiting: throttle:saran (3 request/jam/IP)
+- Format response: {"success": bool, "data": mixed, "message": string}
+```
+
+### PRD.md — Update §7.13 Cron Job:
+
+```
+Penambahan:
+- API endpoint untuk integrasi eksternal (mobile app, third-party).
+```
+
+### PRD.md — Update §10 Acceptance Criteria:
+
+```
+- GET /api/muscles mengembalikan list otot dalam format JSON.
+- GET /api/workouts/{slug} mengembalikan detail gerakan termasuk video_id.
+- GET /api/schedules mengembalikan list template jadwal.
+- POST /api/saran menerima input dan mengembalikan 201 Created.
+```
 | US & PB email reminder ditambahkan | ✅ / ❌ | ✅ / ❌ |
