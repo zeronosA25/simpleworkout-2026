@@ -27,6 +27,9 @@ Route::get('/gerakan/{slug}', [WorkoutController::class, 'show'])->name('workout
 
 Route::get('/jadwal', [ScheduleController::class, 'index'])->name('schedules.index');
 Route::get('/jadwal/{slug}', [ScheduleController::class, 'show'])->name('schedules.show');
+Route::post('/jadwal/{slug}/subscribe', [ScheduleController::class, 'subscribe'])
+    ->middleware('auth')
+    ->name('schedules.subscribe');
 Route::post('/jadwal/toggle', [ScheduleController::class, 'toggleChecklist'])
     ->middleware('auth')
     ->name('schedules.toggle');

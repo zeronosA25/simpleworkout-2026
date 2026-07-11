@@ -20,5 +20,6 @@ return Application::configure(basePath: dirname(__DIR__))
     })
     ->withSchedule(function (\Illuminate\Console\Scheduling\Schedule $schedule) {
         $schedule->command('workout:check-youtube-links')->dailyAt('02:00');
+        $schedule->command('workout:send-reminders')->dailyAt('07:00');
     })
     ->create();

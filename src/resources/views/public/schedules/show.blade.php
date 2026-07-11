@@ -17,6 +17,33 @@
             <p class="text-gray-500 mb-8">{{ $template->deskripsi }}</p>
         @endif
 
+        @auth
+            @if(empty($checklist))
+            <div class="mb-6 text-center">
+                <form action="{{ route('schedules.subscribe', $template->slug) }}" method="POST">
+                    @csrf
+                    <button type="submit"
+                            class="inline-flex items-center gap-2 bg-gradient-to-r from-emerald-500 to-green-500 text-white font-semibold px-6 py-3 rounded-lg hover:from-emerald-600 hover:to-green-600 transition-colors shadow-md">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                        Mulai Jadwal Ini
+                    </button>
+                </form>
+                <p class="text-xs text-gray-400 mt-2">Kamu akan menerima pengingat email setiap pagi untuk jadwal ini.</p>
+            </div>
+            @endif
+        @endauth
+
+        @if(session('success'))
+            <div class="mb-6 bg-emerald-50 border border-emerald-200 text-emerald-700 px-6 py-4 rounded-xl">
+                <div class="flex items-center gap-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    <span class="font-medium">{{ session('success') }}</span>
+                </div>
+            </div>
+        @endif
+
         <div class="overflow-x-auto bg-white rounded-xl shadow-sm border border-cyan-100">
             <table class="w-full">
                 <thead>

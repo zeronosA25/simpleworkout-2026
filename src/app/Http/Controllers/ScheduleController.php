@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\JadwalPengguna;
 use App\Models\TemplateJadwal;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -58,5 +59,29 @@ class ScheduleController extends Controller
             'success' => true,
             'is_checked' => $jadwal->is_checked,
         ]);
+    }
+
+    public function subscribe(string $slug): RedirectResponse
+    {
+        $template = TemplateJadwal::where('slug', $slug)
+            ->with('hariJadwal')
+            ->firstOrFail();
+
+        foreach ($template->hariJadwal as $hari) {
+            JadwalPengguna::firstOrCreate(
+                [
+                    'user_id' => auth()->id(),
+                    'hari_jadwal_id' => $hari->id,
+                ],
+                [
+                    'is_checked' => false,
+                    'checked_at' => null,
+                ]
+            );
+        }
+
+        return redirect()
+            ->route('schedules.show', $slug)
+            ->with('success', 'Kamu sudah mendaftar jadwal ini! Centang setiap hari setelah selesai latihan. Kamu akan menerima pengingat via email setiap pagi.');
     }
 }
