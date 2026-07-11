@@ -17,7 +17,10 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             UserSeeder::class,
             PengaturanWebsiteSeeder::class,
+            EquipmentSeeder::class,
             MuscleGroupSeeder::class,
+            WorkoutSeeder::class,
+            TemplateJadwalSeeder::class,
         ]);
     }
 }
