@@ -14,6 +14,15 @@ export default {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
+            colors: {
+                gym: {
+                    dark: '#0f172a',
+                    card: '#1e293b',
+                    border: '#334155',
+                    accent: '#f97316',
+                    'accent-hover': '#ea580c',
+                },
+            },
             animation: {
                 'fade-in-up': 'fadeInUp 0.6s ease-out forwards',
                 'fade-in': 'fadeIn 0.8s ease-out forwards',

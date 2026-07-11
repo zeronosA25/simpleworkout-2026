@@ -32,7 +32,7 @@
     @livewireStyles
     @stack('head')
 </head>
-<body class="bg-gradient-to-br from-cyan-50 via-white to-emerald-50 min-h-screen flex flex-col">
+<body class="bg-slate-950 text-slate-200 min-h-screen flex flex-col font-sans antialiased">
     @include('public.partials.navbar', ['pengaturan' => $pengaturan])
 
     <main class="flex-grow">
