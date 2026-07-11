@@ -33,7 +33,7 @@ class Workout extends Model
 
     public function equipments(): BelongsToMany
     {
-        return $this->belongsToMany(Equipment::class);
+        return $this->belongsToMany(Equipment::class, 'workout_equipment');
     }
 
     public function detailJadwal(): HasMany
