@@ -26,27 +26,7 @@
                 <p class="text-sm text-gray-500">Belum ada gerakan tersedia untuk bagian otot ini.</p>
             </div>
         @else
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                @foreach ($workouts as $workout)
-                    <a href="{{ route('workout.show', $workout->slug) }}"
-                       class="bg-white rounded-xl shadow-sm hover:shadow-md border border-cyan-100 hover:border-cyan-400 transition-all overflow-hidden group">
-                        @if($workout->image)
-                            <img src="{{ asset('storage/' . $workout->image) }}" alt="{{ $workout->title }}" class="w-full h-48 object-cover">
-                        @else
-                            <div class="w-full h-48 bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center">
-                                <span class="text-white text-4xl font-bold">{{ \Illuminate\Support\Str::limit($workout->title, 2, '') }}</span>
-                            </div>
-                        @endif
-                        <div class="p-4">
-                            <h3 class="font-semibold text-gray-800 group-hover:text-cyan-600 transition-colors mb-1">{{ $workout->title }}</h3>
-                            <span class="text-xs text-white bg-gradient-to-r from-cyan-500 to-blue-500 px-2 py-1 rounded-full">{{ $workout->type === 'gym' ? 'Gym' : 'Home' }}</span>
-                            @if($workout->description)
-                                <p class="text-sm text-gray-500 mt-2">{{ \Illuminate\Support\Str::limit($workout->description, 80) }}</p>
-                            @endif
-                        </div>
-                    </a>
-                @endforeach
-            </div>
+            <livewire:muscle-grid :slug="$muscle->slug" />
         @endif
     </div>
 @endsection

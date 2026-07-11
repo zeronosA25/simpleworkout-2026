@@ -97,6 +97,10 @@
                        class="block text-center text-cyan-600 hover:text-cyan-800 font-medium text-sm">
                         &larr; Kembali ke {{ $workout->muscleGroup->name }}
                     </a>
+
+                    <hr class="my-4 border-cyan-100">
+                    <h4 class="font-semibold text-gray-800 text-sm mb-3">Gerakan Lainnya</h4>
+                    <livewire:workout-navigator :currentId="$workout->id" :muscleGroupId="$workout->muscleGroup->id" />
                 </div>
             </div>
         </div>
