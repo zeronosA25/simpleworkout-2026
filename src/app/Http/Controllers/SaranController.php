@@ -42,7 +42,7 @@ class SaranController extends Controller
             }
         }
 
-        return redirect()->route('saran.create')
+        return redirect()->route('faq.index', ['#kirim-saran'])
             ->with('success', 'Pesan Anda telah berhasil dikirim dan akan diproses oleh Admin.');
     }
 }

@@ -14,10 +14,7 @@
                     Jadwal Latihan
                 </a>
                 <a href="{{ route('faq.index') }}" class="text-gray-700 hover:text-cyan-600 px-3 py-2 text-sm font-medium {{ request()->routeIs('faq.*') ? 'text-cyan-600' : '' }}">
-                    FAQ
-                </a>
-                <a href="{{ route('saran.create') }}" class="text-gray-700 hover:text-cyan-600 px-3 py-2 text-sm font-medium {{ request()->routeIs('saran.*') ? 'text-cyan-600' : '' }}">
-                    Saran / Kritik
+                    FAQ & Kirim Saran
                 </a>
                 @auth
                     <form method="POST" action="{{ route('logout') }}" class="inline">
@@ -46,8 +43,7 @@
         <div class="px-4 py-3 space-y-1">
             <a href="{{ route('home') }}" class="block text-gray-700 rounded-lg px-3 py-2 text-sm font-medium hover:bg-cyan-50 hover:text-cyan-600 {{ request()->routeIs('home') ? 'bg-cyan-50 text-cyan-600' : '' }}">Beranda</a>
             <a href="{{ route('schedules.index') }}" class="block text-gray-700 rounded-lg px-3 py-2 text-sm font-medium hover:bg-cyan-50 hover:text-cyan-600 {{ request()->routeIs('schedules.*') ? 'bg-cyan-50 text-cyan-600' : '' }}">Jadwal Latihan</a>
-            <a href="{{ route('faq.index') }}" class="block text-gray-700 rounded-lg px-3 py-2 text-sm font-medium hover:bg-cyan-50 hover:text-cyan-600 {{ request()->routeIs('faq.*') ? 'bg-cyan-50 text-cyan-600' : '' }}">FAQ</a>
-            <a href="{{ route('saran.create') }}" class="block text-gray-700 rounded-lg px-3 py-2 text-sm font-medium hover:bg-cyan-50 hover:text-cyan-600 {{ request()->routeIs('saran.*') ? 'bg-cyan-50 text-cyan-600' : '' }}">Saran / Kritik</a>
+            <a href="{{ route('faq.index') }}" class="block text-gray-700 rounded-lg px-3 py-2 text-sm font-medium hover:bg-cyan-50 hover:text-cyan-600 {{ request()->routeIs('faq.*') ? 'bg-cyan-50 text-cyan-600' : '' }}">FAQ & Kirim Saran</a>
             <hr class="my-2 border-cyan-100">
             @auth
                 <form method="POST" action="{{ route('logout') }}">

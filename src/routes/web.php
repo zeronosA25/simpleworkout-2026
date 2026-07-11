@@ -34,7 +34,6 @@ Route::post('/jadwal/toggle', [ScheduleController::class, 'toggleChecklist'])
 Route::get('/faq', [FaqController::class, 'index'])->name('faq.index');
 
 Route::middleware('throttle:saran')->group(function () {
-    Route::get('/saran', [SaranController::class, 'create'])->name('saran.create');
     Route::post('/saran', [SaranController::class, 'store'])->name('saran.store');
 });
 
