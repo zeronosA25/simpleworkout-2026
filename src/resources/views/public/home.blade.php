@@ -3,17 +3,24 @@
 @section('title', 'Beranda')
 
 @section('content')
-    <section class="relative py-24 overflow-hidden bg-slate-900">
+    <section class="relative py-24 overflow-hidden
+        {{ $pengaturan?->hero_background_url ? '' : 'bg-slate-900' }}"
+        @if($pengaturan?->hero_background_url)
+            style="background-image: linear-gradient(rgba(15,23,42,0.82), rgba(15,23,42,0.92)), url('{{ $pengaturan->hero_background_url }}'); background-size: cover; background-position: center;"
+        @endif
+    >
+        @if(!$pengaturan?->hero_background_url)
         <div class="absolute inset-0 bg-gradient-to-br from-orange-500/10 via-transparent to-orange-500/5 opacity-50"></div>
         <div class="absolute top-20 left-10 w-72 h-72 bg-orange-500/20 rounded-full blur-3xl"></div>
         <div class="absolute bottom-10 right-10 w-96 h-96 bg-orange-600/10 rounded-full blur-3xl"></div>
+        @endif
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative">
             <span class="inline-block bg-orange-500/20 text-orange-400 text-sm font-semibold px-4 py-1.5 rounded-full mb-4 uppercase tracking-wider">#TrainWithPurpose</span>
             <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-6 animate-fade-in-up leading-tight">
-                {{ $pengaturan->hero_title ?? 'BANGUN TUBUH IDEALMU' }}
+                {{ $pengaturan?->hero_title ?? 'BANGUN TUBUH IDEALMU' }}
             </h1>
             <p class="text-lg text-slate-300 max-w-2xl mx-auto animate-fade-in mb-8" style="animation-delay: 0.2s">
-                {{ $pengaturan->hero_subtitle ?? 'Platform belajar gerakan gym untuk pemula. Pilih otot yang ingin difokuskan dan pelajari teknik yang benar.' }}
+                {{ $pengaturan?->hero_subtitle ?? 'Platform belajar gerakan gym untuk pemula. Pilih otot yang ingin difokuskan dan pelajari teknik yang benar.' }}
             </p>
             <div class="flex flex-wrap justify-center gap-4 animate-fade-in" style="animation-delay: 0.4s">
                 <a href="#peta-tubuh" class="inline-flex items-center gap-2 bg-orange-500 text-white font-bold px-8 py-4 rounded-xl hover:bg-orange-600 transition-colors shadow-xl shadow-orange-500/30 text-lg">

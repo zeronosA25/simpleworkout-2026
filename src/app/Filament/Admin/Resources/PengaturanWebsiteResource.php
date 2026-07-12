@@ -40,6 +40,10 @@ class PengaturanWebsiteResource extends Resource
                             ->label('Judul Hero (Halaman Utama)'),
                         Forms\Components\TextInput::make('hero_subtitle')
                             ->label('Subjudul Hero'),
+                        Forms\Components\TextInput::make('hero_background_url')
+                            ->label('URL Background Hero')
+                            ->url()
+                            ->helperText('URL gambar untuk background hero. Dapat diambil dari Pexels. Ukuran ideal: 1920x1080.'),
                     ])
                     ->columns(2),
 

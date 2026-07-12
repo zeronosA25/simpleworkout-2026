@@ -18,6 +18,7 @@ class PengaturanWebsiteSeeder extends Seeder
             [
                 'hero_title' => 'Selamat Datang di SimpleWorkout',
                 'hero_subtitle' => 'Platform belajar gerakan gym untuk pemula. Pilih otot yang ingin difokuskan dan pelajari teknik yang benar.',
+                'hero_background_url' => 'https://images.pexels.com/photos/841130/pexels-photo-841130.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
                 'deskripsi_singkat_website' => 'Platform tutorial workout gym untuk pemula berbasis web.',
                 'jam_operasional' => 'Senin–Jumat, 08.00–17.00',
             ]

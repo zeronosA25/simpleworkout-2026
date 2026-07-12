@@ -14,6 +14,7 @@ class PengaturanWebsite extends Model
         'favicon',
         'hero_title',
         'hero_subtitle',
+        'hero_background_url',
         'nomor_whatsapp_admin',
         'email_admin',
         'alamat_fisik',
