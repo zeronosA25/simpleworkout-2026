@@ -15,6 +15,25 @@
         <div class="absolute bottom-10 right-10 w-96 h-96 bg-orange-600/10 rounded-full blur-3xl"></div>
         @endif
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative">
+            @auth
+            <span class="inline-block bg-orange-500/20 text-orange-400 text-sm font-semibold px-4 py-1.5 rounded-full mb-4 uppercase tracking-wider">🏆 Selamat Datang Kembali</span>
+            <h1 class="text-3xl md:text-5xl font-extrabold text-white mb-4 animate-fade-in-up leading-tight">
+                Halo, {{ Auth::user()->name }}!
+            </h1>
+            <p class="text-lg text-slate-300 max-w-2xl mx-auto animate-fade-in mb-8" style="animation-delay: 0.2s">
+                Siap melanjutkan workout hari ini? 💪 Tetap konsisten dan capai target fitness kamu.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4 animate-fade-in" style="animation-delay: 0.4s">
+                <a href="{{ route('schedules.index') }}" class="inline-flex items-center gap-2 bg-orange-500 text-white font-bold px-8 py-4 rounded-xl hover:bg-orange-600 transition-colors shadow-xl shadow-orange-500/30 text-lg">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                    Jadwal Saya
+                </a>
+                <a href="#peta-tubuh" class="inline-flex items-center gap-2 border border-slate-600 text-slate-300 font-semibold px-8 py-4 rounded-xl hover:border-orange-500 hover:text-orange-400 transition-colors text-lg">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                    Jelajahi Gerakan
+                </a>
+            </div>
+            @else
             <span class="inline-block bg-orange-500/20 text-orange-400 text-sm font-semibold px-4 py-1.5 rounded-full mb-4 uppercase tracking-wider">#TrainWithPurpose</span>
             <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-6 animate-fade-in-up leading-tight">
                 {{ $pengaturan?->hero_title ?? 'BANGUN TUBUH IDEALMU' }}
@@ -32,6 +51,7 @@
                     Lihat Jadwal
                 </a>
             </div>
+            @endauth
         </div>
     </section>
 
