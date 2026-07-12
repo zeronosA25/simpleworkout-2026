@@ -10,12 +10,11 @@ class PexelsService
 
     public static function search(string $query, int $perPage = 9): array
     {
-        $response = Http::withToken(config('pexels.api_key'))
+        $response = Http::withHeaders(['Authorization' => config('pexels.api_key')])
             ->get(self::$baseUrl . '/search', [
                 'query' => $query,
                 'per_page' => $perPage,
-                'size' => 'medium',
-                'locale' => 'id-ID',
+                'locale' => 'en-US',
                 'orientation' => 'landscape',
             ]);
 
