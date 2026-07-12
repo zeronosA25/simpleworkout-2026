@@ -108,12 +108,21 @@ class WorkoutResource extends Resource
                                 ->required(),
                         ])
                         ->action(function ($data, $set) {
+                            if (empty(config('pexels.api_key'))) {
+                                Notification::make()
+                                    ->title('Pexels API Key belum dikonfigurasi')
+                                    ->body('Tambahkan PEXELS_API_KEY di file .env lalu restart container.')
+                                    ->danger()
+                                    ->send();
+                                return;
+                            }
+
                             $results = PexelsService::search($data['pexels_query'], 9);
 
                             if (empty($results)) {
                                 Notification::make()
                                     ->title('Tidak ada hasil')
-                                    ->body('Coba kata kunci lain yang lebih umum.')
+                                    ->body('Coba kata kunci lain yang lebih umum dalam Bahasa Inggris.')
                                     ->warning()
                                     ->send();
                                 return;
