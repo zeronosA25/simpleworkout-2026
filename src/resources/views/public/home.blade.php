@@ -35,6 +35,25 @@
         </div>
     </section>
 
+    <section class="border-b border-slate-800 bg-slate-900/50">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+            <div class="grid grid-cols-3 gap-8 text-center">
+                <div class="relative">
+                    <span class="text-3xl md:text-4xl font-extrabold text-orange-400">{{ $totalWorkouts ?? 0 }}</span>
+                    <p class="text-sm text-slate-400 mt-1">Gerakan Tersedia</p>
+                </div>
+                <div class="relative">
+                    <span class="text-3xl md:text-4xl font-extrabold text-orange-400">{{ $totalMuscles ?? 6 }}</span>
+                    <p class="text-sm text-slate-400 mt-1">Bagian Otot</p>
+                </div>
+                <div class="relative">
+                    <span class="text-3xl md:text-4xl font-extrabold text-orange-400">{{ $totalSchedules ?? 3 }}</span>
+                    <p class="text-sm text-slate-400 mt-1">Template Jadwal</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="peta-tubuh" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div class="text-center mb-10">
             <h2 class="text-3xl font-extrabold text-white mb-3">Peta Tubuh</h2>
@@ -83,6 +102,27 @@
                     </div>
                     <h3 class="font-bold text-white mb-2">Belajar Fleksibel</h3>
                     <p class="text-sm text-slate-400">Pilih bebas bagian otot yang ingin dipelajari — tanpa urutan kaku yang membosankan.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="border-t border-slate-800">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
+            <div class="bg-gradient-to-br from-orange-500/10 to-orange-600/5 border border-orange-500/20 rounded-3xl p-10">
+                <span class="inline-flex items-center gap-2 bg-orange-500/20 text-orange-300 text-sm font-semibold px-4 py-1.5 rounded-full mb-4">
+                    🔥 Mulai Sekarang
+                </span>
+                <h2 class="text-2xl md:text-3xl font-extrabold text-white mb-3">Siap Memulai Perjalanan Fitness Kamu?</h2>
+                <p class="text-slate-400 mb-8 max-w-xl mx-auto">Pilih template jadwal mingguan dan mulai latihan dengan panduan video yang sudah dikurasi.</p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="{{ route('schedules.index') }}" class="inline-flex items-center gap-2 bg-orange-500 text-white font-bold px-8 py-4 rounded-xl hover:bg-orange-600 transition-colors shadow-xl shadow-orange-500/30 text-lg">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                        Lihat Jadwal Latihan
+                    </a>
+                    <a href="#peta-tubuh" class="inline-flex items-center gap-2 border border-slate-600 text-slate-300 font-semibold px-8 py-4 rounded-xl hover:border-orange-500 hover:text-orange-400 transition-colors text-lg">
+                        Jelajahi Gerakan
+                    </a>
                 </div>
             </div>
         </div>
