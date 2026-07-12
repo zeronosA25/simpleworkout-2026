@@ -26,6 +26,8 @@
 
     @if($pengaturan?->favicon)
     <link rel="icon" type="image/x-icon" href="{{ asset('storage/' . $pengaturan?->favicon) }}">
+    @else
+    <link rel="icon" type="image/svg+xml" href="{{ asset('images/logo.svg') }}">
     @endif
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
