@@ -38,10 +38,7 @@
             @foreach ($muscleGroups as $muscle)
                 <a href="{{ route('muscle.show', $muscle->slug) }}"
                    class="group bg-slate-800 rounded-2xl border border-slate-700 hover:border-orange-500/50 transition-all duration-300 p-6 text-center hover:-translate-y-1 hover:shadow-xl hover:shadow-orange-500/5">
-                    <div class="w-16 h-16 mx-auto mb-3 rounded-full bg-slate-700 flex items-center justify-center group-hover:bg-orange-500/20 transition-colors group-hover:animate-float">
-                        @include('public.partials.muscle-icon', ['slug' => $muscle->slug])
-                    </div>
-                    <h3 class="font-bold text-white group-hover:text-orange-400 transition-colors">
+                    <h3 class="font-bold text-white group-hover:text-orange-400 transition-colors text-lg">
                         {{ $muscle->name }}
                     </h3>
                     @if($muscle->description)
