@@ -48,7 +48,7 @@ Membangun sistem berbasis web untuk mendukung proses belajar gerakan gym secara 
 
 - Fitur checklist pada jadwal yang bersifat pribadi dan tidak mempengaruhi akses ke hari lain. 
 
-- Halaman FAQ publik dan formulir untuk mengirimkan Saran/Kritik. 
+- Halaman FAQ & Kirim Saran dalam satu halaman terpadu — FAQ publik, formulir saran/kritik, dan pencarian FAQ interaktif berbasis Livewire. 
 
 - Dashboard Admin (CMS) untuk mengelola konten dan memoderasi seluruh saran/kritik dari pengguna. 
 
@@ -112,11 +112,23 @@ Manfaat yang diharapkan dari sistem ini antara lain:
 
 - Memberi centang (checklist) pada setiap hari di jadwal sebagai catatan pribadi (bersifat opsional dan tidak mempengaruhi akses ke hari lain). 
 
-- Melihat halaman FAQ publik yang berisi daftar pertanyaan dan jawaban anonim hasil moderasi Admin. 
+- Melihat halaman FAQ & Kirim Saran yang menggabungkan daftar FAQ publik (dengan accordion pencarian Livewire) dan formulir saran/kritik dalam satu halaman terpadu.
 
-- Mengirimkan saran/kritik melalui formulir: 
+- Mengirimkan saran/kritik melalui formulir dengan validasi real-time (Livewire) dan pilihan kategori: Teknis, Kritik Video/Deskripsi, Saran Gerakan Baru.
 
-- Melihat informasi kontak Admin (email dan/atau nomor WhatsApp) yang tertera pada halaman website. 
+- Melihat informasi kontak Admin (email dan/atau nomor WhatsApp) yang tertera pada halaman website.
+
+- Mendaftar (subscribe) ke template jadwal latihan untuk memulai program dan mengaktifkan pengingat email harian.
+
+- Menerima pengingat email setiap pagi (07.00 WIB) via Gmail SMTP untuk hari jadwal yang belum dicentang.
+
+- Melihat statistik real-time di landing page: total gerakan tersedia, total bagian otot, dan total template jadwal.
+
+- Melihat hero section yang dipersonalisasi — sapaan nama untuk pengguna login, CTA generik untuk tamu.
+
+- Menjelajahi gerakan dengan navigasi sebelumnya/selanjutnya (Livewire WorkoutNavigator) tanpa reload halaman.
+
+- Menggunakan checklist jadwal via AJAX (Livewire ChecklistToggle) tanpa reload halaman.
 
 ## **4.2 Dashboard Admin** 
 
@@ -140,7 +152,11 @@ Manfaat yang diharapkan dari sistem ini antara lain:
 
 - Mempublikasikan jawaban atas pertanyaan teknis ke halaman FAQ secara anonim. 
 
-- Mengelola informasi website. 
+- Mengelola informasi website (nama, logo, favicon, hero background, kontak, jam operasional).
+
+- Mencari dan mengunduh gambar workout dari Pexels API langsung melalui Admin Panel.
+
+- Mengelola tampilan website melalui pengaturan tema dan hero background image.
 
 ## **4.3 Pengelolaan Konten dan Saran** 
 
@@ -174,14 +190,14 @@ Manfaat yang diharapkan dari sistem ini antara lain:
 
 - Fitur komunitas atau forum diskusi antar pengguna. 
 
-- Sistem penjadwalan pengingat (rem latihan melalui email atau notifikasi browser. 
+- ~~Sistem penjadwalan pengingat (reminder) latihan melalui email.~~ (Fitur ini SUDAH diimplementasikan — lihat §4.1 dan §6.9) 
 
 ## **5. Stakeholders dan Pengguna** 
 
 |**Stakeholder**|**Peran dan Tanggung Jawab**|
 |---|---|
 |Pengguna(Pelanggan/trainee)|Melihat daftar otot yang tersedia, memilih otot yang ingin<br>dipelajari, melihat daftar gerakan untuk setiap otot,<br>menonton video tutorial dari Youtube yang telah dikurasi,<br>membaca deskripsi step-by-step dan kesalahan umum yang<br>ditulis oleh Admin, Melihat jadwal latihan, memberikan<br>centang (checklist) pada jadwal sebagai catatan pribadi,<br>mengirimkan saran/kritik melalui formulir, dan membaca<br>halaman FAQ publik.|
-|Admin**(**Pemilik<br>Usaha/Pengelola Konten)|Mengelola data otot. Mengelola data gerakan. Mengelola<br>deskripsi gerakan. Mengelola link Youtube untuk setiap<br>gerakan. Mengelola template jadwal latihan. Melihat daftar<br>seluruh saran/kritik yang masuk dari pengguna. Mengubah<br>status saran/kritik. Menulis balasan untuk setiap<br>saran/kritik. Mempublikasikan jawaban atas pertanyaan<br>teknis ke halaman FAQ secara anonim. Mengelola<br>informasi website. Memastikan seluruh link Youtube yang<br>tersimpan masih aktif melaluipengecekan otomatis harian..|
+|Admin**(**Pemilik<br>Usaha/Pengelola Konten)|Mengelola data otot. Mengelola data gerakan. Mengelola<br>deskripsi gerakan. Mengelola link Youtube untuk setiap<br>gerakan. Mengelola template jadwal latihan. Melihat daftar<br>seluruh saran/kritik yang masuk dari pengguna. Mengubah<br>status saran/kritik. Menulis balasan untuk setiap<br>saran/kritik. Mempublikasikan jawaban atas pertanyaan<br>teknis ke halaman FAQ secara anonim. Mengelola<br>informasi website (termasuk hero background, logo, favicon).<br>Mencari dan mengunduh gambar workout dari Pexels API.<br>Memastikan seluruh link Youtube yang<br>tersimpan masih aktif melalui pengecekan otomatis harian.|
 
 
 
@@ -221,15 +237,19 @@ Manfaat yang diharapkan dari sistem ini antara lain:
 
 - Checklist disimpan per akun pengguna sehingga dapat dilihat kembali ketika pengguna login Kembali 
 
-## **6.3 Website Pengguna (Saran, Kritik, & FAQ)** 
+## **6.3 Website Pengguna (FAQ & Kirim Saran)** 
 
-- Melihat halaman FAQ publik yang berisi daftar pertanyaan dan jawaban anonim hasil moderasi Admin. 
+- Melihat halaman FAQ & Kirim Saran yang menggabungkan FAQ publik dan formulir saran/kritik dalam satu halaman terpadu.
 
-- Mengirimkan saran/kritik melalui formulir dengan pilihan kategori. 
+- FAQ ditampilkan dalam format accordion interaktif (Livewire) yang dapat dibuka/tutup.
 
-- Formulir saran/kritik pembatasan pengiriman untuk mencegah penyalahgunaan. 
+- Fitur pencarian FAQ untuk menemukan pertanyaan dengan cepat (Livewire).
 
-- Setelah pengguna mengirimkan saran/kritik, sistem menampilkan konfirmasi bahwa pesan telah berhasil dikirim dan akan diproses oleh Admin. 
+- Mengirimkan saran/kritik melalui formulir Livewire dengan validasi real-time dan pilihan kategori: Teknis, Kritik Video/Deskripsi, Saran Gerakan Baru.
+
+- Formulir saran/kritik memiliki pembatasan pengiriman (rate limiting 3x/jam/IP) untuk mencegah penyalahgunaan.
+
+- Setelah pengguna mengirimkan saran/kritik, sistem menampilkan konfirmasi bahwa pesan telah berhasil dikirim dan akan diproses oleh Admin.
 
 ## **6.4 Dashboard Admin (Manajemen Konten)** 
 
@@ -277,13 +297,70 @@ Manfaat yang diharapkan dari sistem ini antara lain:
 
 6 
 
+## **6.7 REST API (Public Data Endpoint)**
+
+Sistem menyediakan REST API endpoint untuk akses data publik dalam format JSON:
+
+| Method | Endpoint | Fungsi |
+|--------|----------|--------|
+| GET | `/api/muscles` | List semua otot aktif |
+| GET | `/api/muscles/{slug}` | Detail otot + daftar gerakan |
+| GET | `/api/workouts/{slug}` | Detail gerakan lengkap (guide, video_id, mistakes) |
+| GET | `/api/schedules` | List template jadwal |
+| GET | `/api/schedules/{slug}` | Detail jadwal + hari + gerakan |
+| GET | `/api/faq` | List FAQ publik |
+| POST | `/api/saran` | Kirim saran/kritik (rate limited 3x/jam/IP) |
+
+Semua endpoint GET bersifat public (tanpa autentikasi). Response format: `{"success": bool, "data": mixed}`.
+
+## **6.8 Integrasi Pexels API**
+
+Sistem terintegrasi dengan Pexels API (https://www.pexels.com/api) untuk pencarian gambar workout:
+
+- Admin dapat mencari gambar workout berdasarkan kata kunci di form WorkoutResource (Filament).
+- Sistem mengambil hasil pencarian dari Pexels API, mengunduh gambar pertama, dan menyimpannya ke storage.
+- Setiap gambar menyertakan atribusi: "Foto oleh [photographer] di Pexels".
+- Rate limit: 200 request/jam, 20.000 request/bulan.
+
+## **6.9 Email Reminder (Pengingat Jadwal Latihan)**
+
+Sistem mengirim email pengingat otomatis setiap pagi menggunakan Gmail SMTP:
+
+- Pelanggan yang sudah mendaftar (subscribe) template jadwal menerima email pengingat setiap pukul 07.00 WIB.
+- Email berisi: nama jadwal hari ini, daftar gerakan, link ke jadwal di website, dan link kontak Admin.
+- Pengingat hanya dikirim untuk hari yang belum dicentang (is_checked = false).
+- Pengiriman email menggunakan Gmail SMTP (smtp.gmail.com port 587 TLS).
+
+## **6.10 Komponen Interaktif (Livewire)**
+
+Sistem menggunakan Livewire v3 untuk komponen interaktif tanpa page reload:
+
+| Komponen | Fungsi |
+|----------|--------|
+| MuscleGrid | Filter gerakan berdasarkan tipe (Gym/Home) di halaman detail otot |
+| ChecklistToggle | Toggle centang jadwal secara AJAX tanpa reload halaman |
+| SaranForm | Formulir saran/kritik dengan validasi real-time dan konfirmasi inline |
+| FaqAccordion | Akordeon FAQ dengan fitur pencarian dan toggle buka/tutup |
+| WorkoutNavigator | Navigasi gerakan sebelumnya/selanjutnya tanpa reload halaman |
+
+## **6.11 Landing Page & Identitas Visual**
+
+Sistem menerapkan identitas visual yang konsisten:
+
+- **Dark Gym Theme:** Seluruh halaman publik menggunakan tema gelap (bg-slate-950/900) dengan aksen oranye (#F97365) untuk elemen interaktif.
+- **Hero Background:** Admin dapat mengatur gambar latar belakang hero melalui Pengaturan Website.
+- **Personalized Hero:** Hero section menampilkan sapaan personal untuk pengguna login ("Halo, [Nama]!") dan tagline untuk tamu.
+- **Stats Counter:** Menampilkan 3 metrik real-time: total gerakan, total otot, dan total template jadwal.
+- **Avatar Dropdown:** Pengguna login melihat avatar dengan inisial nama di navbar (Alpine.js dropdown).
+- **Custom SW Logo:** Logo SVG kustom dengan barbell dan inisial "SW".
+
 ## **7. Persyaratan Non-Fungsional (Kualitatif)** 
 
 - Keamanan Data: Data pengguna (nama, email, password) serta data saran/kritik hanya dapat diakses oleh pengguna, Admin dapat mengakses seluruh data untuk keperluan moderasi dan pengelolaan konten). 
 
 - Reliabilitas: Sistem dapat menyimpan data otot, gerakan, deskripsi, link Youtube, jadwal, saran/kritik, dan FAQ dengan baik sehingga dapat diakses kembali ketika dibutuhkan. Sistem juga melakukan pengecekan otomatis terhadap link Youtube setiap hari untuk memastikan ketersediaan video. 
 
-- Kemudahan Penggunaan: Tampilan sistem dibuat sederhana dan intuitif agar mudah digunakan oleh pelanggan pemula yang mungkin tidak terbiasa dengan aplikasi web kompleks. Navigasi antar otot dan gerakan dibuat semenarik dan sesederhana mungkin. 
+- Kemudahan Penggunaan: Tampilan sistem dibuat sederhana dan intuitif agar mudah digunakan oleh pelanggan pemula yang mungkin tidak terbiasa dengan aplikasi web kompleks. Navigasi antar otot dan gerakan dibuat semenarik dan sesederhana mungkin. Pengalaman interaktif dengan Livewire (formulir real-time, accordion, checklist AJAX) memberikan UX yang responsif tanpa reload halaman. 
 
 - Kinerja Sistem: Sistem mampu menampilkan informasi otot, daftar gerakan, halaman detail video, jadwal, dan FAQ dengan waktu akses yang wajar karena konten bersifat statis dan tidak membebani server dengan proses analitik berat. 
 
@@ -293,9 +370,15 @@ Manfaat yang diharapkan dari sistem ini antara lain:
 
 - Ketersediaan: Sistem harus dapat diakses 24 jam sehari, 7 hari seminggu, tanpa tergantung pada jam kerja Admin. 
 
-## **8. Arsitektur Tingkat Tinggi** 
+## **8. Arsitektur Tingkat Tinggi**
 
-- **Back-end** : Laravel (PHP Framework) 
+- **Back-end** : Laravel (PHP Framework)
+- **Admin Panel** : Filament v3 + Hasnayeen Themes Plugin
+- **Front-end** : Blade, HTML, CSS (Tailwind), JavaScript (Alpine.js), Livewire v3
+- **Database** : MariaDB (MySQL-compatible)
+- **Email** : Gmail SMTP (smtp.gmail.com:587 TLS)
+- **External API** : Pexels API (gambar workout)
+- **Containerization** : Docker (Nginx, PHP-FPM 8.3, MariaDB 10.11)
 
 - **Panel/Admin UI** : Filament (Admin Panel Builder untuk Laravel) 
 
@@ -351,7 +434,7 @@ Manfaat yang diharapkan dari sistem ini antara lain:
 
 ## **9.6 Data Pengaturan Website** 
 
-- pengaturan_website: id, nama_website, logo, favicon, hero_title, hero_subtitle, nomor_whatsapp_admin, email_admin, alamat_fisik (opsional), jam_operasional (teks), deskripsi_singkat_website, created_at, updated_at 
+- pengaturan_website: id, nama_website, logo, favicon, hero_title, hero_subtitle, hero_background_url (nullable, URL gambar untuk hero section), nomor_whatsapp_admin, email_admin, alamat_fisik (opsional), jam_operasional (teks), deskripsi_singkat_website, created_at, updated_at 
 
 ## **10. Alur Proses Bisnis (Ringkas)** 
 
@@ -373,7 +456,15 @@ Manfaat yang diharapkan dari sistem ini antara lain:
 
 - Pengguna dapat memberikan centang (checklist) pada hari-hari di jadwal sebagai catatan pribadi. 
 
-- Pengguna dapat mengirimkan saran atau kritik melalui formulir dengan kategori yang tersedia. 
+- Pengguna dapat mengirimkan saran atau kritik melalui formulir dengan kategori yang tersedia.
+
+- Pengguna dapat mendaftar (subscribe) ke template jadwal melalui tombol "Mulai Jadwal" di halaman detail template.
+
+- Sistem mengirim email pengingat setiap pukul 07.00 WIB via Gmail SMTP untuk hari-hari jadwal yang belum dicentang.
+
+- Sistem mengirim notifikasi email ke Admin setiap kali ada saran/kritik baru yang masuk.
+
+- Pengguna yang login melihat hero section yang dipersonalisasi dengan sapaan nama, sedangkan tamu melihat CTA "Mulai Latihan". 
 
 - Sistem mengirim notifikasi email ke Admin setiap kali ada saran/kritik baru yang masuk. 
 
@@ -459,7 +550,21 @@ Manfaat yang diharapkan dari sistem ini antara lain:
 
 - Pelanggan dapat melihat halaman FAQ publik yang berisi pertanyaan dan jawaban anonim. 
 
-- Pelanggan dapat mengirimkan saran/kritik melalui formulir dengan pilihan kategori yang tersedia. 
+- Pelanggan dapat mengirimkan saran/kritik melalui formulir dengan pilihan kategori yang tersedia.
+
+- Pelanggan dapat mendaftar (subscribe) template jadwal dan hari-hari muncul sebagai belum dicentang.
+
+- Pelanggan menerima email pengingat setiap pukul 07.00 WIB untuk hari yang belum dicentang (via Gmail SMTP).
+
+- Landing page menampilkan hero yang dipersonalisasi (sapaan untuk login, CTA untuk tamu) dan stats counter real-time.
+
+- Komponen Livewire berfungsi: FAQ accordion + pencarian, form saran real-time, checklist AJAX, filter gerakan, navigasi gerakan.
+
+- Admin dapat mengatur gambar background hero melalui CMS (Pengaturan Website).
+
+- Admin dapat mencari dan mengunduh gambar workout dari Pexels API melalui Admin Panel.
+
+- Data publik dapat diakses melalui REST API endpoint (JSON, tanpa autentikasi untuk GET). 
 
 - Admin dapat login ke dashboard CMS. 
 

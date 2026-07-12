@@ -20,7 +20,7 @@ Sistem ini memungkinkan pengguna untuk melihat daftar otot yang tersedia, memili
 
 yang telah dikurasi, membaca deskripsi step-by-step dan kesalahan umum yang ditulis oleh Admin, serta melihat template jadwal latihan mingguan sebagai panduan. 
 
-Selain itu, sistem menyediakan dashboard Admin (CMS) yang digunakan untuk mengelola data otot, gerakan, deskripsi, link Youtube, template jadwal, serta memoderasi seluruh saran dan kritik yang masuk dari pengguna dalam satu platform terpusat. 
+Selain itu, sistem menyediakan dashboard Admin (CMS) yang digunakan untuk mengelola data otot, gerakan, deskripsi, link Youtube, template jadwal, serta memoderasi seluruh saran dan kritik yang masuk dari pengguna dalam satu platform terpusat. Sistem juga menyediakan REST API untuk akses data publik, integrasi Pexels API untuk pencarian gambar workout, sistem pengingat email otomatis untuk konsistensi latihan, serta tampilan dark theme modern dengan komponen interaktif berbasis Livewire. 
 
 ## **1.3 Tujuan Dokumen** 
 
@@ -34,7 +34,7 @@ Pelanggan merupakan pengguna yang memanfaatkan sistem untuk melihat daftar otot 
 
 ## **Admin / Pemilik Usaha** 
 
-Admin merupakan pengguna yang bertanggung jawab dalam mengelola data otot, gerakan, deskripsi, link Youtube, template jadwal, memoderasi seluruh saran/kritik dari pengguna, mempublikasikan jawaban ke FAQ, serta memastikan seluruh link Youtube yang tersimpan masih aktif melalui pengecekan otomatis harian. 
+Admin merupakan pengguna yang bertanggung jawab dalam mengelola data otot, gerakan, deskripsi, link Youtube, template jadwal, memoderasi seluruh saran/kritik dari pengguna, mempublikasikan jawaban ke FAQ, mengelola identitas visual website (logo, favicon, hero background), mencari dan mengunduh gambar workout dari Pexels API, serta memastikan seluruh link Youtube yang tersimpan masih aktif melalui pengecekan otomatis harian. 
 
 ## **2. TUJUAN PRODUK** 
 
@@ -56,7 +56,13 @@ atau syarat apapun (sifat non-linear/opsional).
 
 - Memungkinkan pengguna memberikan centang (checklist) pada hari-hari di jadwal sebagai catatan pribadi. 
 
-- Memungkinkan pengguna melihat halaman FAQ publik dan mengirimkan saran/kritik melalui formulir. 
+- Memungkinkan pengguna melihat halaman FAQ & Kirim Saran yang menggabungkan FAQ publik dan formulir saran/kritik dalam satu halaman terpadu.
+
+- Memungkinkan pengguna mendaftar (subscribe) ke template jadwal dan menerima pengingat email harian untuk hari yang belum selesai.
+
+- Memungkinkan pengguna yang login melihat hero section yang dipersonalisasi dengan sapaan nama dan akses cepat ke jadwal mereka.
+
+- Memungkinkan pengguna melihat statistik real-time (total gerakan, otot, jadwal) di landing page. 
 
 ## **2.2 Tujuan Admin / Pemilik Usaha** 
 
@@ -70,7 +76,13 @@ Sistem Website Tutorial Workout GYM Untuk Pemula dikembangkan untuk membantu pen
 
 - Mengelola template jadwal latihan secara fleksibel (tambah, edit, hapus). 
 
-- Memoderasi seluruh saran/kritik dari pengguna (membaca, mengklasifikasi, membalas). 
+- Memoderasi seluruh saran/kritik dari pengguna (membaca, mengklasifikasi, membalas).
+
+- Mempublikasikan jawaban atas pertanyaan teknis ke halaman FAQ secara anonim.
+
+- Mengelola gambar background hero dan aset visual website (logo, favicon, hero_background_url).
+
+- Mencari dan mengunduh gambar workout dari Pexels API untuk mempercepat pengelolaan konten. 
 
 - Mempublikasikan jawaban atas pertanyaan teknis ke halaman FAQ secara anonim. 
 
@@ -237,6 +249,18 @@ Bab ini menjelaskan karakteristik pengguna utama yang akan menggunakan sistem We
 |||jawaban atas<br>pertanyaan teknis ke<br>halaman FAQ secara<br>anonim agar<br>pengguna lain dapat<br>membaca<br>jawabannya.||
 |US-20|Admin|Sebagai admin, saya<br>ingin menerima<br>notifikasi jika ada link<br>Youtube yang rusak<br>agar dapat segera<br>memperbaikinya.|Menjaga ketersediaan<br>konten video.|
 
+**User Stories — Versi 1.2 (Penambahan):**
+
+|**ID**|**Aktor**|**User Story**|**Manfaat**|
+|---|---|---|---|
+|US-21|Pelanggan|Sebagai pelanggan, saya ingin mendaftar ke template jadwal latihan tertentu agar menerima pengingat email setiap pagi untuk hari yang belum selesai.|Membantu konsistensi latihan.|
+|US-22|Pelanggan|Sebagai pelanggan, saya ingin melihat statistik platform (total gerakan, otot, jadwal) di landing page agar memahami skala konten.|Memberikan gambaran konten tersedia.|
+|US-23|Pelanggan|Sebagai pelanggan yang sudah login, saya ingin disambut secara personal di hero section landing page agar merasa dihargai.|Meningkatkan retensi pengguna.|
+|US-24|Pelanggan|Sebagai pelanggan, saya ingin FAQ dan formulir saran berada dalam satu halaman yang sama dengan pencarian accordion agar mudah menemukan jawaban.|Mempercepat akses informasi.|
+|US-25|Admin|Sebagai admin, saya ingin mengelola gambar background hero landing page melalui CMS agar tampilan website selalu segar.|Menjaga daya tarik visual.|
+|US-26|Admin|Sebagai admin, saya ingin mencari gambar workout dari Pexels API melalui Admin Panel agar tidak perlu upload manual.|Menghemat waktu pengelolaan konten.|
+|US-27|Developer|Sebagai developer, saya ingin mengakses data workout melalui REST API agar dapat mengintegrasikan dengan aplikasi lain.|Memperluas jangkauan platform.|
+
 
 
 ## **5. PRODUCT BACKLOG** 
@@ -266,6 +290,21 @@ Bab ini menjelaskan karakteristik pengguna utama yang akan menggunakan sistem We
 |PB-17|Publikasi FAQ|Admin dapat<br>mempublikasikan<br>jawaban ke<br>halaman FAQ<br>secara anonim|Medium|Iterasi 5|
 |PB-18|Pengecekan Link<br>Otomatis|Sistem<br>melakukan<br>pengecekan link<br>Youtube setiap<br>hari dan notifikasi<br>jika rusak|High|Iterasi 5|
 |PB-19|Kelola Informasi<br>Website|Admin dapat<br>mengelola<br>informasi kontak<br>dan jam<br>operasional<br>website|Medium|Iterasi 5|
+
+**Product Backlog — Versi 1.2 (Penambahan):**
+
+|**ID**|**Fitur**|**Deskripsi**|**Prioritas**|**Iterasi**|
+|---|---|---|---|---|
+|PB-20|Subscribe Jadwal|Pelanggan dapat mendaftar ke template jadwal untuk menerima pengingat email otomatis|Medium|Iterasi 5|
+|PB-21|Email Reminder|Sistem mengirim email pengingat latihan via Gmail SMTP setiap pukul 07.00 WIB|Medium|Iterasi 5|
+|PB-22|REST API|Endpoint REST API publik untuk data otot, gerakan, jadwal, dan FAQ|Medium|Iterasi 5|
+|PB-23|Pexels API|Admin mencari dan mengunduh gambar workout dari Pexels API melalui Admin Panel|Medium|Iterasi 5|
+|PB-24|Livewire Components|Komponen interaktif: MuscleGrid, ChecklistToggle, SaranForm, FaqAccordion, WorkoutNavigator|Medium|Iterasi 5|
+|PB-25|Dark Gym Theme|Tampilan dark theme gym dengan aksen oranye di seluruh halaman publik|High|Iterasi 3|
+|PB-26|Personalized Hero|Hero section landing page menampilkan sapaan personal untuk pengguna login|Medium|Iterasi 5|
+|PB-27|Stats Counter|Menampilkan statistik real-time di landing page (total gerakan, otot, template jadwal)|Medium|Iterasi 5|
+|PB-28|Hero Background|Admin mengelola gambar background hero melalui CMS|Low|Iterasi 5|
+|PB-29|Avatar Dropdown|Dropdown navbar dengan avatar inisial pengguna, profil, dan logout|Medium|Iterasi 5|
 
 
 
@@ -327,23 +366,37 @@ Fitur yang dikembangkan:
 
 ## **Iterasi 5 – Moderasi, Pemeliharaan, dan Polishing** 
 
-Fokus pada moderasi saran/kritik dan pemeliharaan sistem. 
+Fokus pada moderasi saran/kritik, pemeliharaan sistem, dan fitur lanjutan.
 
-Fitur yang dikembangkan: 
+Fitur yang dikembangkan:
 
-- Melihat daftar saran/kritik yang masuk. 
+- Melihat daftar saran/kritik yang masuk.
 
-- Mengubah status saran/kritik (Pending, On-Progress, Resolved). 
+- Mengubah status saran/kritik (Pending, On-Progress, Resolved).
 
-- Menulis balasan untuk setiap saran/kritik. 
+- Menulis balasan untuk setiap saran/kritik.
 
-- Mempublikasikan jawaban ke FAQ secara anonim. 
+- Mempublikasikan jawaban ke FAQ secara anonim.
 
-- Pengecekan otomatis link Youtube (Cron Job harian). 
+- Pengecekan otomatis link Youtube (Cron Job harian).
 
-- Notifikasi link rusak ke Admin. 
+- Notifikasi link rusak ke Admin.
 
-- Kelola informasi website. 
+- Kelola informasi website (termasuk hero_background_url, logo, favicon).
+
+- Subscribe jadwal dan email reminder via Gmail SMTP.
+
+- REST API endpoint publik (7 endpoint).
+
+- Integrasi Pexels API untuk gambar workout.
+
+- Komponen Livewire (MuscleGrid, ChecklistToggle, SaranForm, FaqAccordion, WorkoutNavigator).
+
+- Personalized hero landing page + stats counter.
+
+- Avatar dropdown navigasi.
+
+- Dark theme gym di seluruh halaman publik. 
 
 ## **5.3 Minimum Viable Product (MVP)** 
 
@@ -355,9 +408,11 @@ Minimum Viable Product (MVP) merupakan kumpulan fitur minimum yang harus tersedi
 
 - Navigasi non-linear, Template jadwal latihan, Checklist jadwal (opsional). 
 
-- Halaman FAQ publik, Formulir saran/kritik. 
+- Halaman FAQ publik, Formulir saran/kritik (FAQ & Kirim Saran — satu halaman terpadu dengan Livewire).
 
-- Dashboard Admin (CMS) untuk mengelola konten, Moderasi saran/kritik. 
+- Dashboard Admin (CMS) untuk mengelola konten, Moderasi saran/kritik, Pexels API integration.
+
+- Dark theme gym dengan komponen Livewire untuk interaktivitas.
 
 ## **6. SITEMAP** 
 
@@ -365,7 +420,7 @@ Minimum Viable Product (MVP) merupakan kumpulan fitur minimum yang harus tersedi
 
 Halaman publik dapat diakses oleh seluruh pengunjung website tanpa harus login terlebih dahulu. 
 
-Dashboard Pelanggan ├── Beranda / Dashboard ├── Profil ├── Daftar Otot ├── Detail Otot (Daftar Gerakan) ├── Detail Gerakan (Video + Deskripsi) ├── Jadwal Latihan ├── FAQ & Kirim Saran └── Logout 
+Dashboard Pelanggan<br>├── Beranda / Landing Page (dark theme, personalized hero, stats counter)<br>├── Profil<br>├── Daftar Otot → Detail Otot (MuscleGrid Livewire filter)<br>├── Detail Gerakan (Video + Deskripsi + WorkoutNavigator Livewire)<br>├── Jadwal Latihan (checklist via ChecklistToggle Livewire, subscribe)<br>├── FAQ & Kirim Saran (FaqAccordion + SaranForm Livewire, satu halaman)<br>└── Logout 
 
 ## **6.3 Dashboard Admin** 
 
@@ -403,7 +458,69 @@ Dashboard Admin ├── Dashboard ├── Data Pelanggan ├── Otot ├�
 
 ## **7.13 Moderasi Saran/Kritik & 7.14 Pengecekan Link Youtube Otomatis** 
 
-**Aturan Bisnis:** Jika ada 3 atau lebih permintaan gerakan sama dalam seminggu, muncul notifikasi khusus di dashboard. Cron Job pengecekan otomatis link berjalan setiap pukul 02.00 pagi. 
+**Aturan Bisnis:** Jika ada 3 atau lebih permintaan gerakan sama dalam seminggu, muncul notifikasi khusus di dashboard. Cron Job pengecekan otomatis link berjalan setiap pukul 02.00 pagi. Cron Job pengingat email latihan berjalan setiap pukul 07.00 pagi.
+
+### 7.15 Subscribe Jadwal (Mulai Jadwal)
+
+**Aturan Fungsional:**
+- Pelanggan yang sudah login dapat mengklik tombol "Mulai Jadwal" di halaman detail template jadwal.
+- Sistem membuat record JadwalPengguna untuk semua hari dalam template dengan status is_checked = false.
+- Pelanggan kemudian dapat mencentang setiap hari seiring menyelesaikan latihan.
+
+### 7.16 Email Reminder (Pengingat Latihan)
+
+**Aturan Fungsional:**
+- Cron job berjalan setiap pukul 07.00 WIB. Sistem memeriksa semua pelanggan yang memiliki jadwal_pengguna dengan is_checked = false untuk urutan_hari yang sesuai hari ini.
+- Setiap pelanggan yang memenuhi kriteria menerima email pengingat berisi: nama hari, daftar gerakan, link "Buka Jadwal Saya", dan link kontak Admin.
+- Pengiriman menggunakan Gmail SMTP (smtp.gmail.com:587 TLS).
+- Console command: `workout:send-reminders`, Mailable class: `WorkoutReminderMail`.
+
+### 7.17 REST API
+
+**Aturan Fungsional:**
+- 7 endpoint REST API publik: GET /api/muscles, GET /api/muscles/{slug}, GET /api/workouts/{slug}, GET /api/schedules, GET /api/schedules/{slug}, GET /api/faq, POST /api/saran.
+- Semua GET endpoint bersifat public read-only, tanpa autentikasi.
+- POST /api/saran memiliki rate limiting 3x/jam/IP.
+- Response format: `{"success": bool, "data": mixed, "message": string}`.
+
+### 7.18 Integrasi Pexels API
+
+**Aturan Fungsional:**
+- Tombol "Cari Gambar dari Pexels" tersedia di form Create/Edit WorkoutResource di Admin Panel.
+- Admin memasukkan kata kunci pencarian (default: judul workout). Sistem mengambil 9 hasil gambar dari Pexels API, mengunduh gambar pertama secara otomatis.
+- Gambar disimpan ke folder workouts/ dengan nama pexels-{id}.jpg.
+- Atribusi fotografer wajib dicantumkan (syarat Pexels API).
+- Service: app/Services/PexelsService.php, Config: config/pexels.php.
+
+### 7.19 Dark Gym Theme (Tema Visual)
+
+**Aturan Fungsional:**
+- Seluruh halaman publik menggunakan palet warna dark: bg-slate-950 (body), bg-slate-900/800 (cards/nav/footer), text-slate-200/300/400.
+- Aksen oranye (#F97365) untuk tombol CTA, link aktif, dan elemen interaktif.
+- Filament admin panel menggunakan Hasnayeen Themes plugin dengan default 'sunset'.
+
+### 7.20 Livewire Components (Komponen Interaktif)
+
+**Aturan Fungsional:**
+- MuscleGrid: Filter gerakan berdasarkan tipe (Gym/Home), hasil langsung ter-refresh tanpa reload.
+- ChecklistToggle: Tombol centang jadwal via AJAX (Livewire), toggle visual instan.
+- SaranForm: Formulir dengan validasi real-time, pesan error inline, dan konfirmasi berhasil tanpa redirect.
+- FaqAccordion: Kotak pencarian FAQ yang memfilter accordion secara langsung.
+- WorkoutNavigator: Tombol "Sebelumnya" / "Selanjutnya" di halaman detail gerakan.
+
+### 7.21 Personalized Hero & Stats Counter
+
+**Aturan Fungsional:**
+- Hero section menggunakan @auth/@guest: login → sapaan personal "Halo, [Nama]!", tamu → tagline + CTA.
+- Hero background: jika hero_background_url diisi, tampilkan gambar dengan overlay; jika tidak, fallback solid.
+- Stats counter: 3 angka real-time dari database (totalWorkouts, totalMuscles, totalSchedules).
+
+### 7.22 Avatar Dropdown & Custom Logo
+
+**Aturan Fungsional:**
+- Navbar menampilkan avatar dengan inisial nama pengguna (huruf pertama, lingkaran oranye).
+- Dropdown (Alpine.js) berisi nama, email, link profil, dan tombol logout.
+- Logo SVG kustom: weight plates + barbell + inisial "SW".
 
 ## **8. WIREFRAME DAN MOCKUP** 
 
@@ -419,16 +536,18 @@ Bagian ini mencakup daftar halaman yang akan dibuat rancangan antarmukanya, term
 
 notifikasi khusus. 
 
-- **Versi 1.2:** Notifikasi email follow-up otomatis, statistik performa kategori, pencarian, dan filter gerakan. 
+- **Versi 1.2:** REST API endpoint, personalisasi hero landing page, stats counter, avatar dropdown, integrasi Pexels API, subscribe jadwal & email reminder via Gmail SMTP, komponen Livewire (MuscleGrid, ChecklistToggle, SaranForm, FaqAccordion, WorkoutNavigator), dark theme gym. 
 
 ## **9.4 Teknologi yang Digunakan** 
 
 |**Komponen**|**Teknologi**|
-|---|---|
+|---|---|---|
 |Backend|Laravel|
-|Frontend|Blade Template, HTML, CSS, JavaScript|
+|Frontend|Blade Template, HTML, Tailwind CSS, Alpine.js, Livewire v3|
 |Database|MariaDB / MySQL|
-|Admin Panel|Filament|
+|Admin Panel|Filament v3 + Hasnayeen Themes Plugin|
+|Email|Gmail SMTP|
+|External API|Pexels API (gambar workout)|
 |Web Server|Nginx|
 |Containerization|Docker|
 
@@ -436,5 +555,20 @@ notifikasi khusus.
 
 ## **10. ACCEPTANCE CRITERIA** 
 
-Kriteria penerimaan mencakup kesesuaian fungsionalitas registrasi, login, navigasi non-linear, monitoring checklist jadwal pribadi, pengiriman umpan balik bebas spam, pengelolaan CMS, serta ketersediaan sistem penuh selama 24/7 tanpa bergantung aktivitas manual admin. 
+Kriteria penerimaan mencakup kesesuaian fungsionalitas registrasi, login, navigasi non-linear, monitoring checklist jadwal pribadi, pengiriman umpan balik bebas spam, pengelolaan CMS, serta ketersediaan sistem penuh selama 24/7 tanpa bergantung aktivitas manual admin.
+
+**Kriteria Tambahan (Versi 1.2):**
+- Landing page menampilkan hero section yang berbeda untuk pengguna login ("Halo, [Nama]!") dan pengguna tamu ("Mulai Latihan").
+- Landing page menampilkan stats counter dengan jumlah gerakan, bagian otot, dan template jadwal yang dihitung secara real-time.
+- Admin dapat mengatur hero_background_url dan gambar akan tampil di landing page dengan overlay gradient.
+- FAQ dan formulir saran/kritik dapat diakses dalam satu halaman terpadu dengan accordion interaktif dan validasi real-time (Livewire).
+- Checklist jadwal berfungsi via AJAX tanpa reload halaman (Livewire ChecklistToggle).
+- Navigasi gerakan sebelumnya/selanjutnya berfungsi tanpa reload halaman (Livewire WorkoutNavigator).
+- Filter gerakan berdasarkan tipe (Gym/Home) berfungsi tanpa reload (Livewire MuscleGrid).
+- Pelanggan dapat mendaftar (subscribe) template jadwal dan menerima pengingat email setiap pagi via Gmail SMTP.
+- Navbar menampilkan avatar dengan inisial pengguna saat login, dan dropdown menu dengan profil dan logout.
+- Logo SVG kustom "SW" tampil di navbar dan halaman guest.
+- Seluruh halaman publik menggunakan dark theme gym yang konsisten (slate + oranye).
+- REST API endpoint publik mengembalikan data JSON yang valid.
+- Admin dapat mencari dan mengunduh gambar workout dari Pexels API melalui Admin Panel. 
 
