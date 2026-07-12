@@ -1,6 +1,6 @@
 ## **PRODUCT REQUIREMENT DOCUMENT (PRD)** 
 
-**Produk:** Website Tutorial Workout GYM Untuk Pemula (SimpleWorkout) **Versi:** 1.0 (Final) **Tanggal:** 27 Juni 2026 **Status:** Siap Pengembangan **Dasar Acuan:** BRD Final (SimpleWorkout) v1.0 
+**Produk:** Website Tutorial Workout GYM Untuk Pemula (SimpleWorkout) **Versi:** 1.2 **Tanggal:** 13 Juli 2026 **Status:** Siap Hosting **Dasar Acuan:** BRD Final (SimpleWorkout) v1.2 
 
 ## **1. PENDAHULUAN** 
 
@@ -571,4 +571,17 @@ Kriteria penerimaan mencakup kesesuaian fungsionalitas registrasi, login, naviga
 - Seluruh halaman publik menggunakan dark theme gym yang konsisten (slate + oranye).
 - REST API endpoint publik mengembalikan data JSON yang valid.
 - Admin dapat mencari dan mengunduh gambar workout dari Pexels API melalui Admin Panel. 
+
+---
+
+## **11. RIWAYAT PERUBAHAN**
+
+| Versi | Tanggal | Perubahan | Penulis |
+|-------|---------|-----------|---------|
+| 1.0 | 27 Jun 2026 | Dokumen awal — 20 User Stories, 19 Product Backlog, 5 Iterasi MVP | Tim |
+| 1.2 | 13 Jul 2026 | + US-21 s/d US-27 (Subscribe, Stats, Personalized Hero, FAQ Merged, Hero BG, Pexels, REST API) | Tim |
+| | | + PB-20 s/d PB-29 (10 backlog baru) | |
+| | | + §7.15 s/d §7.22 (Subscribe, Email Reminder, REST API, Pexels, Dark Theme, Livewire, Personalized Hero, Avatar) | |
+| | | + §9.4: update teknologi (Livewire, Alpine.js, Gmail SMTP, Pexels API, Hasnayeen Themes) | |
+| | | + §10: 13 kriteria acceptance baru | |
 

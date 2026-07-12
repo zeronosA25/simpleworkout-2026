@@ -36,7 +36,7 @@ Membangun sistem berbasis web untuk mendukung proses belajar gerakan gym secara 
 
 - Registrasi dan login pengguna. 
 
-- List naman ama Latihan Otot untuk memilih otot yang ingin dilatih 
+- List nama nama Latihan Otot untuk memilih otot yang ingin dilatih 
 
 - Daftar gerakan spesifik untuk setiap otot. 
 
@@ -581,4 +581,11 @@ Sistem menerapkan identitas visual yang konsisten:
 ## **15. Diagram Use Case** 
 
 11 
+
+## **16. Riwayat Perubahan**
+
+| Versi | Tanggal | Perubahan | Penulis |
+|-------|---------|-----------|---------|
+| 1.0 | 27 Jun 2026 | Dokumen awal — MVP: autentikasi, otot, gerakan, deskripsi, link Youtube, jadwal, centang, FAQ, saran/kritik, CMS admin | Tim |
+| 1.2 | 13 Jul 2026 | Penambahan: REST API (7 endpoint), integrasi Pexels API, email reminder via Gmail SMTP, subscribe jadwal, komponen Livewire (MuscleGrid, ChecklistToggle, SaranForm, FaqAccordion, WorkoutNavigator), dark gym theme, personalized hero, stats counter, hero background, avatar dropdown, custom SW logo, FAQ & saran digabung satu halaman, content seeders | Tim |
 
