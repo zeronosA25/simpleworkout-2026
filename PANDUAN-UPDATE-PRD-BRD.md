@@ -254,3 +254,70 @@ Penambahan:
 - POST /api/saran menerima input dan mengembalikan 201 Created.
 ```
 | US & PB email reminder ditambahkan | ✅ / ❌ | ✅ / ❌ |
+
+
+---
+
+## 5. Pexels API — Integrasi Gambar Workout
+
+**(Tambahan untuk dokumentasi integrasi pihak ketiga)**
+
+### BRD.md — Tambah di §5.2 Cakupan Fungsional:
+
+```
+- Admin dapat mencari dan mengunduh gambar workout dari Pexels API melalui Admin Panel.
+```
+
+### BRD.md — Tambah section baru di §6 (setelah §6.7 REST API):
+
+```
+### 6.8 Integrasi Pexels API
+
+Sistem terintegrasi dengan Pexels API (https://www.pexels.com/api) untuk pencarian gambar workout.
+
+Fitur:
+- Admin dapat mencari gambar workout berdasarkan kata kunci di form WorkoutResource.
+- Sistem mengambil hasil pencarian dari Pexels API, mengunduh gambar pertama,
+  dan menyimpannya ke storage sebagai gambar workout.
+- Setiap gambar menyertakan atribusi: "Foto oleh [photographer] di Pexels".
+
+Teknis:
+- Pexels API Key disimpan di config/pexels.php.
+- Rate limit: 200 request/jam, 20.000 request/bulan.
+- Gambar diunduh ke storage/app/public/workouts/pexels-{id}.jpg.
+- Format landscape (1200x627) dipilih untuk konsistensi tampilan.
+- Service class: app/Services/PexelsService.php.
+```
+
+### PRD.md — Tambah di §4 User Stories:
+
+```
+| US-?? | Admin | Sebagai admin, saya ingin mencari gambar workout dari Pexels agar tidak perlu upload manual satu per satu. | Mempercepat pengelolaan konten. |
+```
+
+### PRD.md — Tambah di §5 Product Backlog:
+
+```
+| PB-?? | Integrasi Pexels API | Admin dapat mencari dan mengunduh gambar workout dari Pexels API melalui Admin Panel | Medium | Iterasi 5 |
+```
+
+### PRD.md — Tambah di §7 Spesifikasi Fitur (setelah §7.15 REST API):
+
+```
+### 7.16 Integrasi Pexels API
+
+**Aturan Fungsional:**
+- Tombol "Cari Gambar dari Pexels" tersedia di form Create/Edit WorkoutResource.
+- Admin memasukkan kata kunci pencarian (default: judul workout).
+- Sistem mengambil 9 hasil gambar dari Pexels API, mengunduh gambar pertama secara otomatis.
+- Gambar disimpan ke folder workouts/ dengan nama pexels-{id}.jpg.
+- Atribusi fotografer wajib dicantumkan (syarat Pexels API).
+
+**Aturan Teknis:**
+- Service: app/Services/PexelsService.php
+- Config: config/pexels.php
+- WorkoutResource: Forms\Components\Actions\Action dengan modal pencarian.
+- HTTP Client: Laravel Http facade dengan Bearer token.
+- Fallback: Jika API gagal, tampilkan notifikasi error ke admin.
+```
+

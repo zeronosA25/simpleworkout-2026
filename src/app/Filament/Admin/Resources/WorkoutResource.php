@@ -4,8 +4,10 @@ namespace App\Filament\Admin\Resources;
 
 use App\Filament\Admin\Resources\WorkoutResource\Pages;
 use App\Models\Workout;
+use App\Services\PexelsService;
 use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -19,6 +21,7 @@ use Filament\Forms\Components\RichEditor;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\IconColumn;
+use Illuminate\Support\Facades\Storage;
 
 class WorkoutResource extends Resource
 {
@@ -91,6 +94,57 @@ class WorkoutResource extends Resource
                     ->image()
                     ->directory('workouts')
                     ->columnSpanFull(),
+
+                \Filament\Forms\Components\Actions::make([
+                    \Filament\Forms\Components\Actions\Action::make('searchPexelsImage')
+                        ->label('Cari Gambar dari Pexels')
+                        ->icon('heroicon-o-photo')
+                        ->color('gray')
+                        ->form([
+                            TextInput::make('pexels_query')
+                                ->label('Kata Kunci')
+                                ->default(fn ($get) => $get('title'))
+                                ->placeholder('contoh: bench press gym workout')
+                                ->required(),
+                        ])
+                        ->action(function ($data, $set) {
+                            $results = PexelsService::search($data['pexels_query'], 9);
+
+                            if (empty($results)) {
+                                Notification::make()
+                                    ->title('Tidak ada hasil')
+                                    ->body('Coba kata kunci lain yang lebih umum.')
+                                    ->warning()
+                                    ->send();
+                                return;
+                            }
+
+                            $selected = $results[0];
+
+                            try {
+                                $imageContent = file_get_contents($selected['full']);
+                                $filename = 'workouts/pexels-' . $selected['id'] . '.jpg';
+                                Storage::disk('public')->put($filename, $imageContent);
+
+                                $set('image', $filename);
+
+                                Notification::make()
+                                    ->title('Gambar berhasil diunduh!')
+                                    ->body('Foto oleh ' . $selected['photographer'] . ' di Pexels — ' . count($results) . ' hasil ditemukan.')
+                                    ->success()
+                                    ->send();
+                            } catch (\Exception $e) {
+                                Notification::make()
+                                    ->title('Gagal mengunduh gambar')
+                                    ->body($e->getMessage())
+                                    ->danger()
+                                    ->send();
+                            }
+                        })
+                        ->modalWidth('lg')
+                        ->modalHeading('Cari Gambar Workout dari Pexels')
+                        ->modalDescription('Ketik kata kunci dalam bahasa Inggris untuk hasil terbaik. Gambar pertama akan dipilih secara otomatis. Didukung oleh Pexels API.'),
+                ])->columnSpanFull(),
 
                 Toggle::make('is_published')
                     ->label('Tampilkan di Website')
