@@ -2,8 +2,11 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
             <div class="flex items-center">
-                <a href="{{ route('home') }}" class="text-xl font-bold text-orange-500 tracking-tight">
-                    {{ $pengaturan?->nama_website ?? 'SimpleWorkout' }}
+                <a href="{{ route('home') }}" class="flex items-center gap-2">
+                    <x-application-logo class="w-8 h-8 text-orange-500" />
+                    <span class="text-xl font-bold text-orange-500 tracking-tight">
+                        {{ $pengaturan?->nama_website ?? 'SimpleWorkout' }}
+                    </span>
                 </a>
             </div>
             <div class="hidden sm:flex items-center space-x-1">
