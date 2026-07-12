@@ -4,9 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\JadwalPengguna;
 use App\Models\TemplateJadwal;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class ScheduleController extends Controller
@@ -38,27 +36,6 @@ class ScheduleController extends Controller
         }
 
         return view('public.schedules.show', compact('template', 'checklist'));
-    }
-
-    public function toggleChecklist(Request $request): JsonResponse
-    {
-        $request->validate([
-            'hari_jadwal_id' => 'required|exists:hari_jadwal,id',
-        ]);
-
-        $jadwal = JadwalPengguna::firstOrNew([
-            'user_id' => auth()->id(),
-            'hari_jadwal_id' => $request->hari_jadwal_id,
-        ]);
-
-        $jadwal->is_checked = !$jadwal->is_checked;
-        $jadwal->checked_at = $jadwal->is_checked ? now() : null;
-        $jadwal->save();
-
-        return response()->json([
-            'success' => true,
-            'is_checked' => $jadwal->is_checked,
-        ]);
     }
 
     public function subscribe(string $slug): RedirectResponse

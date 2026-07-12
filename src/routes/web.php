@@ -30,9 +30,6 @@ Route::get('/jadwal/{slug}', [ScheduleController::class, 'show'])->name('schedul
 Route::post('/jadwal/{slug}/subscribe', [ScheduleController::class, 'subscribe'])
     ->middleware('auth')
     ->name('schedules.subscribe');
-Route::post('/jadwal/toggle', [ScheduleController::class, 'toggleChecklist'])
-    ->middleware('auth')
-    ->name('schedules.toggle');
 
 Route::get('/faq', [FaqController::class, 'index'])->name('faq.index');
 

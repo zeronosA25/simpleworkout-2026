@@ -25,8 +25,11 @@ class ChecklistToggle extends Component
             ->first();
 
         if ($existing) {
-            $existing->delete();
-            $this->isChecked = false;
+            $existing->update([
+                'is_checked' => !$existing->is_checked,
+                'checked_at' => $existing->is_checked ? null : now(),
+            ]);
+            $this->isChecked = $existing->is_checked;
         } else {
             JadwalPengguna::create([
                 'user_id' => $user->id,
