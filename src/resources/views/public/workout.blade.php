@@ -28,7 +28,7 @@
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
                             </iframe>
                         @else
-                            <div class="flex items-center justify-center h-full text-gray-400">
+                            <div class="flex items-center justify-center h-full text-slate-400">
                                 @php
                                     $safeUrl = $workout->video_url;
                                     $isSafe = preg_match('/^https?:\/\//i', $safeUrl);

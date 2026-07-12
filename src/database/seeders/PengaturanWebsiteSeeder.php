@@ -9,6 +9,10 @@ class PengaturanWebsiteSeeder extends Seeder
 {
     public function run(): void
     {
+        if (PengaturanWebsite::count() > 0) {
+            return;
+        }
+
         PengaturanWebsite::firstOrCreate(
             ['nama_website' => 'SimpleWorkout'],
             [

@@ -12,11 +12,6 @@ use Illuminate\View\View;
 
 class SaranController extends Controller
 {
-    public function create(): View
-    {
-        return view('public.saran');
-    }
-
     public function store(Request $request): RedirectResponse
     {
         $validated = $request->validate([

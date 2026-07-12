@@ -41,6 +41,7 @@ class SaranForm extends Component
     {
         $this->validateOnly('pesan');
         $this->submitted = false;
+        $this->successMessage = '';
     }
 
     public function submit(): void
