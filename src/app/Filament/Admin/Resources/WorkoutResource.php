@@ -135,7 +135,7 @@ class WorkoutResource extends Resource
                                 $filename = 'workouts/pexels-' . $selected['id'] . '.jpg';
                                 Storage::disk('public')->put($filename, $imageContent);
 
-                                $set('image', $filename);
+                                $set('image', [$filename]);
 
                                 Notification::make()
                                     ->title('Gambar berhasil diunduh!')
